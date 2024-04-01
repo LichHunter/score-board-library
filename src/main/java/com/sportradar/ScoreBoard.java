@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface ScoreBoard {
 
-    void startMatch(String home, String away);
+    void startMatch(String homeTeam, String awayTeam);
 
     void updateScore(String homeTeam, int homeScore, String awayTeam, int awayScore);
 

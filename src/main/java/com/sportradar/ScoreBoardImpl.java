@@ -12,14 +12,14 @@ public class ScoreBoardImpl implements ScoreBoard {
     private final Set<Match> ongoingMatches = new HashSet<>();
 
     @Override
-    public void startMatch(String home, String away) {
-        checkParameters(home, away);
+    public void startMatch(String homeTeam, String awayTeam) {
+        checkParameters(homeTeam, awayTeam);
 
-        if (containsGame(home, away)) {
-            throw new MatchAlreadyExistsException(home, away);
+        if (containsGame(homeTeam, awayTeam)) {
+            throw new MatchAlreadyExistsException(homeTeam, awayTeam);
         }
 
-        ongoingMatches.add(new Match(home, away));
+        ongoingMatches.add(new Match(homeTeam, awayTeam));
     }
 
     @Override
@@ -56,16 +56,16 @@ public class ScoreBoardImpl implements ScoreBoard {
             .collect(toList());
     }
 
-    protected Set<Match> getMatches() {
+    Set<Match> getMatches() {
         return ongoingMatches;
     }
 
-    private boolean containsGame(String home, String away) {
-        return ongoingMatches.contains(new Match(home, away));
+    private boolean containsGame(String homeTeam, String awayTeam) {
+        return ongoingMatches.contains(new Match(homeTeam, awayTeam));
     }
 
-    private void checkParameters(String home, String away) {
-        if (home == null || away == null) {
+    private void checkParameters(String homeTeam, String awayTeam) {
+        if (homeTeam == null || awayTeam == null) {
             throw new InvalidParameterException("One of parameters is null");
         }
     }

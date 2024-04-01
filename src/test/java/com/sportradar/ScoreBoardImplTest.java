@@ -98,12 +98,12 @@ public class ScoreBoardImplTest {
     }
 
     @Test
-    void givenNoGamesExist_whenGetSummary_thenReturnEmptyList() {
+    void givenNoMatchessExist_whenGetSummary_thenReturnEmptyList() {
         assertThat(scoreBoard.getSummary()).isEmpty();;
     }
 
     @Test
-    void givenPreExisingGames_whenGetSummary_thenReturnListInProperOrder() {
+    void givenPreExisingMatchess_whenGetSummary_thenReturnListInProperOrder() {
         scoreBoard.startMatch("Mexico", "Canada");
         scoreBoard.startMatch("Spain", "Brazil");
         scoreBoard.startMatch("Germany", "France");

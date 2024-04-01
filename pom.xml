@@ -9,8 +9,6 @@
   <version>1.0</version>
 
   <name>score-board-library</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -39,7 +37,7 @@
     <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-params</artifactId>
-        <version>5.10.0</version>
+        <version>5.9.2</version>
         <scope>test</scope>
     </dependency>
 

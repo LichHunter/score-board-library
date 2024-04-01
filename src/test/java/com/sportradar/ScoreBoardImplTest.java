@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.security.InvalidParameterException;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,6 @@ public class ScoreBoardImplTest {
     void givenHomeAndAwayTeams_whenStartMatch_thenSetCointainsOneMatch() {
         scoreBoard.startMatch("Team1", "Team2");
 
-        assertEquals(1, scoreBoard.getMatches().size());
         assertThat(scoreBoard.getMatches().size()).isEqualTo(1);
     }
 
@@ -47,15 +46,13 @@ public class ScoreBoardImplTest {
 
         scoreBoard.updateScore("Team1", score, "Team2", score);
 
-        Set<Match> matches = scoreBoard.getMatches();
+        Map<String, Match> matches = scoreBoard.getMatches();
         assertThat(matches.size()).isEqualTo(1);
 
-        for (Match match : matches) {
-            assertThat(match.getHomeTeam()).isEqualTo("Team1");
-            assertThat(match.getAwayTeam()).isEqualTo("Team2");
-            assertThat(match.getHomeScore()).isEqualTo(Math.abs(score));
-            assertThat(match.getAwayScore()).isEqualTo(Math.abs(score));
-        }
+        Match match = matches.get("Team1,Team2");
+        assertThat(match.getHomeScore()).isEqualTo(Math.abs(score));
+        assertThat(match.getAwayScore()).isEqualTo(Math.abs(score));
+
     }
 
     @Test

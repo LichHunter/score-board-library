@@ -1,4 +1,3 @@
-#+title: README
 #+author: Oleksand Derevianko
 
 * Live Football World Cup Scoreboard Library
@@ -32,7 +31,7 @@ To use this library you need to perform next steps:
   <dependency>
     <groupId>com.sportradar</groupId>
     <artifactId>score-board-library</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
   </dependency
   #+end_src
 
@@ -42,3 +41,7 @@ In the library there is an interfaces named `ScoreBoard` that has default implem
 Based on requirements I made decision to use additional parameters named `homeTeam` and `awayTeam` to be able quickly find matches and operate on them. I could also use UUID instead of team names to find Matches and use Map to store ongoing Matches but decided to not do so as guidelines say that the solution should be the simplest I can think of.
 
 All development performed in TDD style, meaning that firstly necessary tests created and then create implementation of method to satisfy test conditions.
+
+*** Update notes
+Utilized Map with key based on combined `homeTeam` and `awayTeam`.
+Updated `ScoreBoardImpl` to optimize match search.

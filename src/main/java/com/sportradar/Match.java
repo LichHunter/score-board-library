@@ -8,9 +8,11 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(exclude = {"startTime", "homeScore", "awayScore"})
 public class Match {
-    private final Instant startTime;
     private final String homeTeam;
     private final String awayTeam;
+
+    // Variables excluded from equals and hashcode
+    private final Instant startTime;
     private int homeScore;
     private int awayScore;
 

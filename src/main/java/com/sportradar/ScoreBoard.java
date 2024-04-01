@@ -1,5 +1,7 @@
 package com.sportradar;
 
+import java.util.List;
+
 public interface ScoreBoard {
 
     void startMatch(String home, String away);
@@ -8,6 +10,6 @@ public interface ScoreBoard {
 
     void finishMatch(String homeTeam, String awayTeam);
 
-    void getSummary();
+    List<Match> getSummary();
 
 }

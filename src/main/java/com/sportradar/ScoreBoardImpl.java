@@ -2,6 +2,7 @@ package com.sportradar;
 
 import java.security.InvalidParameterException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ScoreBoardImpl implements ScoreBoard {
@@ -46,9 +47,8 @@ public class ScoreBoardImpl implements ScoreBoard {
     }
 
     @Override
-    public void getSummary() {
-        // TODO Auto-generated method stub
-
+    public List<Match> getSummary() {
+        return null;
     }
 
     protected Set<Match> getMatches() {

@@ -1,6 +1,9 @@
 package com.sportradar;
 
+import static java.util.stream.Collectors.toList;
+
 import java.security.InvalidParameterException;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -48,7 +51,9 @@ public class ScoreBoardImpl implements ScoreBoard {
 
     @Override
     public List<Match> getSummary() {
-        return null;
+        return ongoingMatches.stream()
+            .sorted(Comparator.comparing((Match match) -> match.getHomeScore() + match.getAwayScore()).thenComparing(Match::getStartTime))
+            .collect(toList());
     }
 
     protected Set<Match> getMatches() {

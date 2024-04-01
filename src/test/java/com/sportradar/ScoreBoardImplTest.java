@@ -104,12 +104,12 @@ public class ScoreBoardImplTest {
 
     @Test
     void givenPreExisingGames_whenGetSummary_thenReturnListInProperOrder() {
-        scoreBoard.startMatch("Mixico", "Canada");
+        scoreBoard.startMatch("Mexico", "Canada");
         scoreBoard.startMatch("Spain", "Brazil");
         scoreBoard.startMatch("Germany", "France");
         scoreBoard.startMatch("Uruguay", "Italy");
         scoreBoard.startMatch("Argentina", "Australia");
-        scoreBoard.updateScore("Mixico", 0, "Canada", 5);
+        scoreBoard.updateScore("Mexico", 0, "Canada", 5);
         scoreBoard.updateScore("Spain", 10, "Brazil", 2);
         scoreBoard.updateScore("Germany", 2, "France", 2);
         scoreBoard.updateScore("Uruguay", 6, "Italy", 6);

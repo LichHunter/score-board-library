@@ -69,6 +69,28 @@ public class ScoreBoardImplTest {
         assertThatThrownBy(() -> scoreBoard.updateScore(team1, team1Score, team2, team2Score)).isInstanceOf(InvalidParameterException.class);
     }
 
+    @Test
+    void givenValidParameters_whenFinishMatch_thenThereIsNoOngoingMatches() {
+        scoreBoard.startMatch("Team1", "Team2");
+
+        scoreBoard.finishMatch("Team1", "Team2");
+
+        assertThat(scoreBoard.getMatches().size()).isEqualTo(0);
+    }
+
+    @Test
+    void givenMatchDoesNotExist_whenFinishMatch_thenThrowException() {
+        assertThatThrownBy(() -> scoreBoard.finishMatch("Team1", "Team2")).isInstanceOf(MatchDoesNotExistException.class);
+    }
+
+    @ParameterizedTest
+    @MethodSource("finishMatchParameterProvider")
+    void givenNullParameter_whenFinishMatch_thenThrowException(String team1, String team2) {
+        scoreBoard.startMatch("Team1", "Team2");
+
+        assertThatThrownBy(() -> scoreBoard.finishMatch(team1, team2)).isInstanceOf(InvalidParameterException.class);
+    }
+
     private static Stream<Arguments> startMatchParameterProvider() {
         return Stream.of(
                          Arguments.of("Team1", null),
@@ -84,4 +106,13 @@ public class ScoreBoardImplTest {
                          Arguments.of(null, 2, null, 3)
         );
     }
+
+    private static Stream<Arguments> finishMatchParameterProvider() {
+        return Stream.of(
+                         Arguments.of("Team1", null),
+                         Arguments.of(null, "Team2"),
+                         Arguments.of(null, null)
+        );
+    }
+
 }

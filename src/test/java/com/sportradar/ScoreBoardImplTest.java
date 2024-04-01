@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.security.InvalidParameterException;
 import java.util.stream.Stream;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -14,6 +15,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 public class ScoreBoardImplTest {
     private ScoreBoardImpl scoreBoard = new ScoreBoardImpl();
 
+    @Test
     void givenHomeAndAwayTeams_whenStartGame_thenSetCointainsOneGame() {
         scoreBoard.startGame("Team1", "Team2");
 
@@ -27,6 +29,7 @@ public class ScoreBoardImplTest {
         assertThatThrownBy(() -> scoreBoard.startGame(team1, team2)).isInstanceOf(InvalidParameterException.class);
     }
 
+    @Test
     void givenDuplicateTeamPair_whenStartGame_thenThrowException() {
 
         scoreBoard.startGame("Team1", "Team2");

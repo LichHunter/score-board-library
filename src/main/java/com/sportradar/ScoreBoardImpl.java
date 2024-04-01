@@ -5,21 +5,21 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ScoreBoardImpl implements ScoreBoard {
-    private final Set<Game> ongoingGames = new HashSet<>();
+    private final Set<Match> ongoingMatches = new HashSet<>();
 
     @Override
-    public void startGame(String home, String away) {
+    public void startMatch(String home, String away) {
         if (home == null || away == null) {
             throw new InvalidParameterException("One of parameters is null");
         }
 
-        Game game = new Game(home, away);
+        Match game = new Match(home, away);
 
-        if (ongoingGames.contains(game)) {
+        if (ongoingMatches.contains(game)) {
             throw new MatchAlreadyExistsException(home, away);
         }
 
-        ongoingGames.add(game);
+        ongoingMatches.add(game);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class ScoreBoardImpl implements ScoreBoard {
 
     }
 
-    protected Set<Game> getGames() {
-        return ongoingGames;
+    protected Set<Match> getMatches() {
+        return ongoingMatches;
     }
 }

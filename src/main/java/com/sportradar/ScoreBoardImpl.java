@@ -35,7 +35,7 @@ public class ScoreBoardImpl implements ScoreBoard {
     }
 
     @Override
-    public void finishGame(String homeTeam, String awayTeam) {
+    public void finishMatch(String homeTeam, String awayTeam) {
         // TODO Auto-generated method stub
 
     }

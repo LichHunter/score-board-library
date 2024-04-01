@@ -9,23 +9,29 @@ public class ScoreBoardImpl implements ScoreBoard {
 
     @Override
     public void startMatch(String home, String away) {
-        if (home == null || away == null) {
-            throw new InvalidParameterException("One of parameters is null");
-        }
+        checkParameters(home, away);
 
-        Match game = new Match(home, away);
-
-        if (ongoingMatches.contains(game)) {
+        if (containsGame(home, away)) {
             throw new MatchAlreadyExistsException(home, away);
         }
 
-        ongoingMatches.add(game);
+        ongoingMatches.add(new Match(home, away));
     }
 
     @Override
     public void updateScore(String homeTeam, int homeScore, String awayTeam, int awayScore) {
-        // TODO Auto-generated method stub
+        checkParameters(homeTeam, awayTeam);
 
+        if (!containsGame(homeTeam, awayTeam)) {
+            throw new MatchDoesNotExistException(homeTeam, awayTeam);
+        }
+
+        for (Match match : ongoingMatches) {
+            if (match.getHomeTeam().equals(homeTeam) && match.getAwayTeam().equals(awayTeam)) {
+                match.setHomeScore(Math.abs(homeScore));
+                match.setAwayScore(Math.abs(awayScore));
+            }
+        }
     }
 
     @Override
@@ -42,5 +48,15 @@ public class ScoreBoardImpl implements ScoreBoard {
 
     protected Set<Match> getMatches() {
         return ongoingMatches;
+    }
+
+    private boolean containsGame(String home, String away) {
+        return ongoingMatches.contains(new Match(home, away));
+    }
+
+    private void checkParameters(String home, String away) {
+        if (home == null || away == null) {
+            throw new InvalidParameterException("One of parameters is null");
+        }
     }
 }

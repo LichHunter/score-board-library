@@ -36,8 +36,13 @@ public class ScoreBoardImpl implements ScoreBoard {
 
     @Override
     public void finishMatch(String homeTeam, String awayTeam) {
-        // TODO Auto-generated method stub
+        checkParameters(homeTeam, awayTeam);
 
+        if (!containsGame(homeTeam, awayTeam)) {
+            throw new MatchDoesNotExistException(homeTeam, awayTeam);
+        }
+
+        ongoingMatches.remove(new Match(homeTeam, awayTeam));
     }
 
     @Override
